@@ -12,12 +12,12 @@
  <%= @task.status %>
 </p>
 <p>
- <strong>Stated date:</strong>
- <%= @task.stated_date %>
+ <strong>Start date:</strong>
+ <%= @task.startdate %>
 </p>
 <p>
  <strong>End date:</strong>
- <%= @task.end_date %>
+ <%= @task.enddate %>
 </p>
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

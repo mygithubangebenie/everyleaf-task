@@ -11,7 +11,7 @@
     <% end %>
     <div class="field">
       <%= form.label :name %>
-      <%= form.text_field :title %>
+      <%= form.text_field :name %>
     </div>
     <div class="field">
       <%= form.label :content %>
@@ -23,12 +23,12 @@
     </div>
 
     <div class="field">
-      <%= form.label :stated_date %>
-      <%= form.date_select :stated_date %>
+      <%= form.label :startdate %>
+      <%= form.date_select :startdate %>
     </div>
     <div class="field">
-      <%= form.label :end_date %>
-      <%= form.date_select :end_date %>
+      <%= form.label :enddate %>
+      <%= form.date_select :enddate %>
     </div>
     <div class="actions">
       <%= form.submit %>
