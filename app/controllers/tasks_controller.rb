@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
  def index
    @tasks = Task.all
+   @tasks = Task.order_list(params[:sort_by])
  end
 
  def show
