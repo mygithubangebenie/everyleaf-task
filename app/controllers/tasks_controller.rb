@@ -4,7 +4,14 @@ class TasksController < ApplicationController
  def index
    @tasks = Task.all
    @tasks = Task.order_list(params[:sort_by])
+   @tasks = if params[:term]
+    Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+     else
+      # @tasks = Task.order('name').page params[:page]
+     Task.order_list(params[:sort_by])
+     end
  end
+ 
 
  def show
  end
@@ -30,6 +37,7 @@ class TasksController < ApplicationController
      redirect_to @task, notice: 'Task was successfully updated.'
    else
      render :edit
+  
    end
  end
  
@@ -39,11 +47,11 @@ class TasksController < ApplicationController
  end
  private
    
-   def set_task
-     @task = Task.find(params[:id])
-   end
+ def set_task
+  @task = Task.find(params[:id])
+ end
 
-   def task_params
-     params.require(:task).permit(:name, :content, :status, :startdate, :enddate)
-   end
+  def task_params
+  params.require(:task).permit(:name, :content, :status, :startdate, :enddate)
+  end
 end
