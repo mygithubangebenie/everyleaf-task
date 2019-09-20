@@ -1,24 +1,4 @@
 
-RSpec.configure do |config|
-  （Omission）
-
-  config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
-
-  # Add the following description
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before(:all) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:all) do
-    DatabaseCleaner.clean
-  end
-end
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -78,5 +58,24 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
-end
+  # config.filter_gems_from_backtrace("gem name"
+  
+    config.filter_rails_from_backtrace!
+    # arbitrary gems may also be filtered via:
+    # config.filter_gems_from_backtrace("gem name")
+  
+    # Add the following description
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+    end
+  
+    config.before(:all) do
+      DatabaseCleaner.start
+    end
+  
+    config.after(:all) do
+      DatabaseCleaner.clean
+    end
+  end
+
+
