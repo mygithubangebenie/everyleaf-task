@@ -2,6 +2,7 @@
 <%= link_to "enddate", tasks_path(sort_by: "enddate") %>
 
 <p id="notice"><%= notice %></p>
+<%= paginate @tasks %>
 <h1>Tasks</h1>
 <%= form_tag(tasks_path, method: :get) do %>
   <%= text_field_tag :term, params[:term] %>

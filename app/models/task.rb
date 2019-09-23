@@ -8,4 +8,5 @@ class Task < ApplicationRecord
           order(startdate: :desc)
         end
       end
+      paginates_per 2
 end
