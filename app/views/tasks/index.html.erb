@@ -2,7 +2,6 @@
 <%= link_to "enddate", tasks_path(sort_by: "enddate") %>
 
 <p id="notice"><%= notice %></p>
-<%= paginate @tasks %>
 <h1>Tasks</h1>
 <%= form_tag(tasks_path, method: :get) do %>
   <%= text_field_tag :term, params[:term] %>
@@ -33,8 +32,10 @@
        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
      </tr>
    <% end %>
+   
  </tbody>
 </table>
+<%= paginate @tasks %>
 <br>
 <%= link_to 'New Task', new_task_path %>
 <% end %>
