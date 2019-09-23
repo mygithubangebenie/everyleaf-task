@@ -72,6 +72,11 @@ RSpec.feature "Task management function", type: :feature do
     click_on 'Destroy'
     expect(page).not_to have_content('testtesttest')
   end
+  scenario "Test sort in high order by priority" do
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'low', startdate: '10.2.2019', enddate: '20.10.2019')
+    Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed',priority: 'high', startdate: '10.2.2019', enddate: '20.10.2019')
+    Task.order('priority asc')
+  end
 end
 
 

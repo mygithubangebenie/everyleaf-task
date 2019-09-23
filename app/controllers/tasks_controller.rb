@@ -5,7 +5,7 @@ class TasksController < ApplicationController
    @tasks = Task.all
    @tasks = Task.order_list(params[:sort_by])
    @tasks = if params[:term]
-    Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
+    Task.where('status LIKE ? or priority LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%")
      else
       # @tasks = Task.order('name').page params[:page]
      Task.order_list(params[:sort_by])
@@ -52,6 +52,6 @@ class TasksController < ApplicationController
  end
 
   def task_params
-  params.require(:task).permit(:name, :content, :status, :startdate, :enddate)
+  params.require(:task).permit(:name, :content, :status, :startdate, :enddate, :priority)
   end
 end

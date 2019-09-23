@@ -1,4 +1,4 @@
-<%= link_to "name", tasks_path(sort_by: "name") %>
+<%= link_to "priority", tasks_path(sort_by: "priority") %>
 <%= link_to "enddate", tasks_path(sort_by: "enddate") %>
 
 <p id="notice"><%= notice %></p>
@@ -14,6 +14,7 @@
      <th>Status</th>
      <th>Start date</th>
      <th>End date</th>
+     <th>Priority</th>
      <th colspan="3">actions</th>
    </tr>
  </thead>
@@ -25,6 +26,7 @@
        <td><%= task.status %></td>
        <td><%= task.startdate %></td>
        <td><%= task.enddate %></td>
+       <td><%= task.priority %></td>
        <td><%= link_to 'Show', task %></td>
        <td><%= link_to 'Edit', edit_task_path(task) %></td>
        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
