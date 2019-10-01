@@ -2,13 +2,12 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
 
  def index
-   @tasks = Task.all
-   @tasks = Task.order_list(params[:sort_by]).page params[:page]
+   
    @tasks = if params[:term]
     Task.where('status LIKE ? or priority LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%").page params[:page]
      else
-      # @tasks = Task.order('name').page params[:page]
-     Task.order_list(params[:sort_by]).page params[:page]
+  
+     Task.order('created_at desc').page params[:page]
      end
  end
  
