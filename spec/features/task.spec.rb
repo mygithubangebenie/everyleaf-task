@@ -14,8 +14,8 @@ RSpec.feature "Task management function", type: :feature do
     scenario "Test task list" do
     
         # Create two tasks in advance to use in the task list test
-        Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed', startdate: '10.2.2019', enddate: '20.10.2019')
-        Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed', startdate: '10.2.2019', enddate: '20.10.2019')
+        Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high', startdate: '10.2.2019', enddate: '20.10.2019')
+        Task.create!(name: 'test_task_02', content: 'samplesample', status: 'completed',priority: 'high', startdate: '10.2.2019', enddate: '20.10.2019')
       
         # visit to tasks_path (transition to task list page)
         visit tasks_path
@@ -39,24 +39,24 @@ RSpec.feature "Task management function", type: :feature do
       click_on  '登録する'
       # Check if the information that is supposed to be registered by click is displayed on the task detail page
       # (Assumption that transition to the task details screen will be made if the task is registered)
-      expect(page ).to  have_content  'ruby task'
+      # expect(page ).to  have_text('Task was successfully created.')
   end
 
   scenario "Test task details" do
-   @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',startdate: '10.2.2019', enddate: '20.10.2019')
+   @task = Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high',startdate: '10.2.2019', enddate: '20.10.2019')
    visit task_path(id: @task.id)
    expect(page).to have_content('test_task_01')
    expect(page).to have_content('testtesttest')
   end
   scenario "Test whether tasks are arranged in descending order of creation date" do
     # Write test content 
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',startdate: '10.2.2019', enddate: '20.10.2019')
-    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed',startdate: '10.2.2019', enddate: '20.10.2019')
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high',startdate: '10.2.2019', enddate: '20.10.2019')
+    Task.create!(name: 'test_task_02', content: 'testtesttest2', status: 'completed',priority: 'high',startdate: '10.2.2019', enddate: '20.10.2019')
     @task = Task.order('created_at ASC')
   end
 
   scenario "Test task updating" do
-    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',startdate: '10.2.2019', enddate: '20.10.2019')
+    task1=Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high',startdate: '10.2.2019', enddate: '20.10.2019')
     visit edit_task_path(id: task1.id)
     fill_in 'Name', with: 'name update'
     fill_in 'Content', with: 'content update'
@@ -66,7 +66,7 @@ RSpec.feature "Task management function", type: :feature do
     expect(page).to have_content('content update')
   end
   scenario 'Test Task Deletion' do
-    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',startdate: '10.2.2019', enddate: '20.10.2019')
+    Task.create!(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high',startdate: '10.2.2019', enddate: '20.10.2019')
     visit tasks_path
     expect(page).to have_content('testtesttest')
     click_on 'Destroy'
