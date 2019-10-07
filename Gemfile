@@ -70,3 +70,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem 'rspec'
 gem 'rspec-its'
+gem 'bcrypt', '~> 3.1.7'
