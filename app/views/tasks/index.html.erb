@@ -25,6 +25,7 @@
       <th scope="col">Start date</th>
       <th scope="col">End date</th>
       <th scope="col">Priority</th>
+      <th scope="col">User</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -38,6 +39,7 @@
       <td><%= task.startdate %></td>
       <td><%= task.enddate %></td>
       <td><%= task.priority %></td>
+      <td><%= task.user.name %></td>
       <td>
         <%= link_to 'Show', task, class:"btn btn-success" %>
         <%= link_to 'Edit', edit_task_path(task), class:"btn btn-primary" %>
