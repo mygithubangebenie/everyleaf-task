@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_092230) do
+ActiveRecord::Schema.define(version: 2019_10_22_100051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_092230) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "priority"
     t.bigint "user_id"
+    t.integer "priority"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2019_10_07_092230) do
     t.string "usertype"
     t.string "name"
     t.string "email"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
