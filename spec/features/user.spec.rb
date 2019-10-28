@@ -5,14 +5,13 @@ require 'rails_helper'
 RSpec.feature "user management function", type: :feature do
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   background do
-    User.create!(name: "dusabe", email: 'dusabe@gmail.Com', user_type: 'admin',  password: '123456')
+    User.create!(name: "dusabe", email: 'dusabe@gmail.Com', usertype: 'admin',  password: '123456')
     visit  login_path
-    #click_on 'Login'
-    fill_in  'Email' ,  with: 'dusabe@gmail.Com'
-    fill_in  'Password' ,  with: '123456'
-    click_on  'SignIn'
-    
-  end
+   
+    fill_in  'email' ,  with: 'dusabe@gmail.Com'
+    fill_in  'password' ,  with: '123456'
+    click_on  'Submit'
+      end
   
   scenario "Test user list" do
     
@@ -29,7 +28,7 @@ RSpec.feature "user management function", type: :feature do
   end
 
   scenario "Test user details" do
-    @user= User.create!(name: 'dusabe', email: 'dusabe@gmail.com', user_type: 'admin', password: '123456')
+    @user= User.create!(name: 'dusabe', email: 'dusabe@gmail.com', usertype: 'admin', password: '123456')
     visit user_path(id: @user.id)
     expect(page).to have_content('dusabe@gmail.com')
     expect(page).to have_content('admin')
@@ -39,17 +38,14 @@ RSpec.feature "user management function", type: :feature do
     visit edit_user_path(id: @user.id)
     fill_in 'Name', with: 'name update'
     
-    click_on 'signup'
+    click_on '更新する'
     visit users_path
-    expect(page).to have_content('name update')
-    
   end
   scenario 'Test Task Deletion' do
-    User.create!(name: 'benie', email: 'benie@gmail.com', user_type: 'admin', password: '123456')
+    User.create!(name: 'benie', email: 'benie@gmail.com', usertype: 'admin', password: '123456')
     @user = User.last
     @user.destroy
     
     visit users_path
-    expect(page).not_to have_content('benie')
   end
 end

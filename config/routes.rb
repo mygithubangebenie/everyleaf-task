@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   root 'tasks#index'
   resources :tasks
+  resources :sessions
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get '/login' => 'sessions#new'
