@@ -31,9 +31,9 @@
       <%= form.date_select :enddate %>
     </div>
     <div class="field">
-      <%= form.label :priority %>
-      <%= form.text_field :priority %>
-    </div>
+   <%= form.label :priority, class: 'font-weight-bolder' %>&emsp;&emsp;&emsp;
+   <%= form.select :priority, ['High', 'medium', 'Under'], class: "field1" %>
+ </div>
 
     <div class = "tables">
  <% Label.all.each do |label| %>
