@@ -8,6 +8,10 @@
     <%= text_field_tag :term, params[:term], class:"form-control mr-sm-2", type:"search", placeholder:"Search" %>
     <%= submit_tag 'Search', name: nil, class:"btn btn-outline-success my-2 my-sm-0" %>
   <% end %>
+  <%= form_tag(tasks_path, method: :get, class:"form-inline my-2 my-lg-0") do %>
+    <%= text_field_tag :term1, params[:term1], class:"form-control mr-sm-2", type:"search", placeholder:"Search" %>
+    <%= submit_tag 'Search', name: nil, class:"btn btn-outline-success my-2 my-sm-0" %>
+  <% end %>
 
 <br>
 
@@ -26,6 +30,7 @@
       <th scope="col">End date</th>
       <th scope="col">Priority</th>
       <th scope="col">User</th>
+      <th scope="col">Labels</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
@@ -40,6 +45,7 @@
       <td><%= task.enddate %></td>
       <td><%= task.priority %></td>
       <td><%= task.user.name %></td>
+      <td><%= task.labels.size %></td>
       <td>
         <%= link_to 'Show', task, class:"btn btn-success" %>
         <%= link_to 'Edit', edit_task_path(task), class:"btn btn-primary" %>

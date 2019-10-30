@@ -24,7 +24,7 @@ module Everyleaftask
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
-    config.i18n.default_locale = :ja
+     config.i18n.default_locale = :ja
   end 
   
  end

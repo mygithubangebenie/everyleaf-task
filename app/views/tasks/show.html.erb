@@ -23,5 +23,15 @@
  <strong>Priority:</strong>
  <%= @task.priority %>
 </p>
+
+<p> <h2> Attached labels</h2>
+<% @task.labels.each do |task| %>
+<ul>
+<li class = "user-tasks">
+Name:<%= task.name + '       ' %> <br/>Content:<%= task.content %>
+</li>
+</ul>
+<% end %>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
