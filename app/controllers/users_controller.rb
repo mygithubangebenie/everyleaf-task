@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :give_users_right_to_admin, only: [:index]
+  before_action :only_create_user_when_none_signed_in, only: [:new, :create]
   
   def index
     @users = User.all
@@ -22,9 +23,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -70,6 +71,11 @@ class UsersController < ApplicationController
     def give_users_right_to_admin
       unless current_user && current_user.usertype == "admin"
         redirect_to root_url, notice: "only admin user can access this page"
+      end
+    end
+    def only_create_user_when_none_signed_in
+      if current_user
+        redirect_to users_path,  notice: "you can't create user when signed in"
       end
     end
 end

@@ -36,6 +36,7 @@
   </thead>
   <tbody>
   <% @tasks.each do |task| %>
+    <% if task.user_id == current_user.id %>
     <tr>
       <th scope="row"><%= task.id %></th>
       <td><%= task.name %></td>
@@ -52,6 +53,7 @@
         <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
       </td>
     </tr>
+  <% end %>
   <% end %>
   </tbody>
 </table>
