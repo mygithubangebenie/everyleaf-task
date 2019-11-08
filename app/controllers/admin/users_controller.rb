@@ -70,7 +70,7 @@ class Admin::UsersController < ApplicationController
 
     def give_users_right_to_admin
       unless current_user && current_user.usertype == "admin"
-        redirect_to root_url, notice: "only admin user can access this page"
+        redirect_to tasks_path, notice: "only admin user can access this page"
       end
     end
     def only_create_user_when_none_signed_in
