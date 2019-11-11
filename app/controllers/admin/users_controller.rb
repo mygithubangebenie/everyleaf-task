@@ -50,10 +50,20 @@ class Admin::UsersController < ApplicationController
 
  
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    # @user.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+
+    if @user.id == current_user.id
+      redirect_to admin_users_url, notice: "You can not delete signed in user"
+      @admins = User.admins
+    elsif @admins == 1
+      redirect_to admin_users_url, notice: "Atleast one admin must remain!"
+    else
+      @user.destroy
+      redirect_to admin_users_url, notice: 'User was successfully destroyed.'
     end
   end
 

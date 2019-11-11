@@ -9,4 +9,14 @@ def email_uniqueness
    self.errors.add(:email, "is already in use by another account")
  end
 end
+def self.admins
+  @users = User.all
+  @admins = 0
+  @users.each do |user|
+    if user.usertype == "admin"
+      @admins += 1
+    end
+  end
+  return @admins
+end
 end
