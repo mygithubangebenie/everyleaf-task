@@ -9,6 +9,12 @@ RSpec.feature "Task management function", type: :feature do
     fill_in  'email' ,  with: 'dusabe@gmail.Com'
     fill_in  'password' ,  with: '123456'
     click_on  'Submit'
+    visit new_task_path
+      
+      fill_in  'Name' ,  with: 'completed'
+      fill_in  'Content' ,  with: 'ruby task'
+      
+      click_on  '登録する' 
       end
  
     scenario "Test task list" do
@@ -33,7 +39,8 @@ RSpec.feature "Task management function", type: :feature do
   end
 
   scenario "Test task details" do
-   click_on 'New Task'
+
+   visit new_task_path
    fill_in 'Name', with: 'name details'
     fill_in 'Content', with: 'content details'
     click_on '登録する'
@@ -73,16 +80,27 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
   end
   scenario "test task search by attached labels" do
-  
+   visit tasks_path
+
+   visit new_task_path
+   fill_in  'Name' ,  with: 'completed'
+   fill_in  'Content' ,  with: 'ruby task'
+   fill_in  'Status' ,  with: 'task status'
+   click_on  '登録する'
+
     click_on 'Labels'
     click_on 'New Label'
     fill_in 'Name', with: 'label Name1'
     fill_in 'Content', with: 'label content1'
-    
-    
-     click_on 'New Label'
-    fill_in 'Name', with: 'label Name2'
-   fill_in 'Content', with: 'label content2'
+    click_on '登録する'
+
+    click_on 'Labels'
+    click_on 'New Label'
+    fill_in 'Name', with: 'label Name1'
+    fill_in 'Content', with: 'label content1'
+    click_on '登録する'
+    Task.create(name: 'test_task_01', content: 'testtesttest', status: 'completed',priority: 'high', startdate: '10.2.2019', enddate: '20.10.2019')
+   
     
     @task = Task.first
     @label1 = Label.first
@@ -90,9 +108,9 @@ RSpec.feature "Task management function", type: :feature do
     @task.labels = [@label1,@label2]
     @task.save
     visit tasks_path
-    fill_in  'term3' ,  with: 'label Name1'
+    fill_in  'term1' ,  with: 'label Name1'
     click_on '  Search'
-    expect(page).to have_content('content1')
+    expect(page).to have_content('ruby task')
   end
 end
 

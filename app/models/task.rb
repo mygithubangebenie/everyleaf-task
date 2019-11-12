@@ -5,6 +5,9 @@ class Task < ApplicationRecord
   enum priority: [:low, :medium, :high]
   has_many :tasks_labels, dependent: :destroy
  has_many :labels, through: :tasks_labels
+ accepts_nested_attributes_for :tasks_labels, :reject_if => proc { |a|
+    a['label_id'].blank? }
+ accepts_nested_attributes_for :labels
     def self.order_list(sort_order)
         if sort_order == "priority"
           order(priority: :desc)

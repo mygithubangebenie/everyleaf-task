@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     Task.where('status LIKE ? or name LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%").page params[:page]
    elsif params[:term1]
     Task.joins(:labels)
-         .where("labels.name ILIKE ?", "%#{params[:term3]}%").page params[:page]
+         .where("labels.name ILIKE ?", "%#{params[:term1]}%").page params[:page]
      else
      Task.order_list(params[:sort_by]).page params[:page]
      end
